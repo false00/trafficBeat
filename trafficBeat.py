@@ -4,7 +4,7 @@
 # Version 1.0
 #
 # SYNOPSIS
-# python3 ./trafficBeat.py
+# python3 ./trafficBeat.py 8.8.8.8
 #
 # DESCRIPTION
 # Forwards all system network traffic to IP address using the "TEE" method
@@ -20,13 +20,13 @@ import sys
 from scapy.all import *
 
 def main():
-    get_mac()
-    # #Ask user for Monitor IP
-    # IP = sys.argv[1]
-    #
-    # #Get Monitor IP MAC Address
-    # get_mac()
-    #
+
+    #Ask user for Monitor IP
+    monip = sys.argv[1]
+
+    #Get Monitor IP MAC Address
+    get_mac(str(monip))
+
     # #SNIFF PACKET
     # sniff_packet()
     #
@@ -39,8 +39,8 @@ def main():
 
 
 
-def get_mac():
-    arp_frame = Ether(dst="ff:ff:ff:ff:ff:ff") / ARP(op=1, pdst="172.16.20.151")
+def get_mac(monip):
+    arp_frame = Ether(dst="ff:ff:ff:ff:ff:ff") / ARP(op=1, pdst=monip)
     resp, unans = srp(arp_frame)
 
     for s, r in resp:
