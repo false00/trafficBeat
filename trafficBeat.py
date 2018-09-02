@@ -25,7 +25,8 @@ def main():
     monip = sys.argv[1]
 
     #Get Monitor IP MAC Address
-    global mac = get_mac(str(monip))
+    global media
+    media = get_mac(str(monip))
 
     #Replay Packet
     while 1:
@@ -38,12 +39,12 @@ def get_mac(monip):
 
     for s, r in resp:
         mac = r[Ether].src
-    return mac
+        return mac
 
 
 def chg_mac(x):
 # Edit Packet and Replace DST MAC with Monitor MAC
-    x[Ether].dst = mac
+    x[Ether].dst = media
     send(x)
 
 
