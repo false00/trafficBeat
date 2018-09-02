@@ -15,32 +15,19 @@
 # HISTORY:
 #
 # Date(YYYY/MM/DD):     Version:        Modified By:    Description of Change:
+# 2018-09-02            1.0             Juan Ortega     First Working Version of Script
 
 import sys
 from scapy.all import *
 
 
-
 def main():
 
-    #Ask user for Monitor IP
-    monip = sys.argv[1]
-
-    # Get Monitor IP MAC Address
-    mac = get_mac(str(monip))
-    print(mac)
-    pkts = rdpcap("icmp.pcap")
-
-    for pkt in pkts:
-        chg_mac(pkt,mac)
-
-
-    # #Replay Packet
-    # while 1:
-    #     sniff(prn=chg_mac)
+    sniff(prn=chg_mac)
 
 
 def get_mac(monip):
+
     arp_frame = Ether(dst="ff:ff:ff:ff:ff:ff") / ARP(op=1, pdst=monip)
     resp, unans = srp(arp_frame)
 
@@ -49,11 +36,17 @@ def get_mac(monip):
     return mac
 
 
-def chg_mac(pkt,mac):
-# Edit Packet and Replace DST MAC with Monitor MAC
-    pkt[Ether].dst = mac
-    sendp(pkt)
+def chg_mac(pkt):
+    # Get Monitor IP MAC Address
+    monip = sys.argv[1]
+    mac = get_mac(str(monip))
 
+    # Edit Packet and Replace DST MAC with Monitor MAC
+    try:
+        pkt[Ether].dst = mac
+        sendp(pkt)
+    except:
+        pass
 
 
 if __name__ == "__main__": main()
