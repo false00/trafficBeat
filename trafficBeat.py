@@ -16,6 +16,7 @@
 #
 # Date(YYYY/MM/DD):     Version:        Modified By:    Description of Change:
 # 2018-09-02            1.0             Juan Ortega     First Working Version of Script
+# 2018-09-02            1.1             Juan Ortega     Windows x86-64 Binary Support
 
 import sys
 from scapy.all import *
@@ -40,7 +41,18 @@ def get_mac(monip):
 def chg_mac(pkt):
     # Get Monitor IP MAC Address
     global arp_count
-    monip = sys.argv[1]
+
+    try:
+        monip = sys.argv[1]
+    except:
+        print("===============Error=============== \n"
+              "Pass the IP you wish to mirror traffic to.\n"
+              "This application will edit every packet and modify the DST MAC\n"
+              "with the MAC address associated with the IP entered. Modified packet\n"
+              "will be sent over layer 2\n"
+              "\n"
+              "Usage: trafficBeat.exe 10.0.0.1")
+        sys.exit(1)
 
     if arp_count == 0 :
         arp_count +=1
