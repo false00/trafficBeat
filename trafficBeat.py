@@ -20,6 +20,7 @@
 import sys
 from scapy.all import *
 
+arp_count = 0
 
 def main():
 
@@ -38,8 +39,13 @@ def get_mac(monip):
 
 def chg_mac(pkt):
     # Get Monitor IP MAC Address
+    global arp_count
     monip = sys.argv[1]
-    mac = get_mac(str(monip))
+
+    if arp_count == 0 :
+        arp_count +=1
+        print (str(arp_count))
+        get_mac(str(monip))
 
     # Edit Packet and Replace DST MAC with Monitor MAC
     try:
