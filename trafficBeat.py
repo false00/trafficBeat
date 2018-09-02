@@ -25,18 +25,11 @@ def main():
     monip = sys.argv[1]
 
     #Get Monitor IP MAC Address
-    get_mac(str(monip))
+    global mac = get_mac(str(monip))
 
-    # #SNIFF PACKET
-    # sniff_packet()
-    #
-    # #Edit Packet and Replace DST MAC with Monitor MAC
-    # edit_packet()
-    #
-    # #Replay Packet
-    # replay_packet()
-
-
+    #Replay Packet
+    while 1:
+        sniff(prn=chg_mac())
 
 
 def get_mac(monip):
@@ -44,18 +37,15 @@ def get_mac(monip):
     resp, unans = srp(arp_frame)
 
     for s, r in resp:
-        print(r[Ether].src)
+        mac = r[Ether].src
+    return mac
 
 
-def sniff_packet():
-    pass
+def chg_mac(x):
+# Edit Packet and Replace DST MAC with Monitor MAC
+    x[Ether].dst = mac
+    send(x)
 
-
-def edit_packet():
-    pass
-
-def replay_packet():
-    pass
 
 
 if __name__ == "__main__": main()
