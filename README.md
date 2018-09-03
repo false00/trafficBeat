@@ -1,7 +1,4 @@
 # trafficBeat
-# 
-
-# trafficBeat
 
 trafficBeat allows you to mirror traffic from your Windows or Mac operating system to any IP on the same local subnet. It accomplishes this by editing the destination MAC of each packet with a new destination, and sending the edited packets over layer 2. 
 
