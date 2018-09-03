@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #
 # NAME - trafficBeat.py
-# Version 1.0
+# Version 1.2
 #
 # SYNOPSIS
 # python3 ./trafficBeat.py 10.0.0.1
@@ -17,19 +17,17 @@
 # Date(YYYY/MM/DD):     Version:        Modified By:    Description of Change:
 # 2018-09-02            1.0             Juan Ortega     First Working Version of Script
 # 2018-09-02            1.1             Juan Ortega     Windows x86-64 Binary Support
+# 2018-09-03            1.2             Juan Ortega     Bug Fix: Fixed Endless Loop of Duplicate Packet Bug
 
 import sys
 from scapy.all import *
 
-arp_count = 0
 
 def main():
-
-    sniff(prn=chg_mac)
+    sniff(prn=chg_mac, filter='ip', store=0)
 
 
 def get_mac(monip):
-
     arp_frame = Ether(dst="ff:ff:ff:ff:ff:ff") / ARP(op=1, pdst=monip)
     resp, unans = srp(arp_frame)
 
@@ -40,8 +38,33 @@ def get_mac(monip):
 
 def chg_mac(pkt):
     # Get Monitor IP MAC Address
-    global arp_count
+    global mac
+    global monip
 
+    # Edit Packet and Replace DST MAC with Monitor MAC
+    #MON 20 xx
+    #Client 22 aa
+    #Remote 21 bb
+
+    #10.0.0.22 > 10.0.0.21
+    #aa bb
+
+    #MOD
+    # 10.0.0.22 > 10.0.0.21
+    # 00  xx
+
+    #valid Traffic
+    # 10.0.0.22 > 10.0.0.20
+    # aa  xx
+
+    if pkt[Ether].dst != mac:
+        pkt[Ether].dst = mac
+        sendp(pkt)
+    else:
+        pass
+
+
+if __name__ == "__main__":
     try:
         monip = sys.argv[1]
     except:
@@ -53,18 +76,6 @@ def chg_mac(pkt):
               "\n"
               "Usage: trafficBeat.exe 10.0.0.1")
         sys.exit(1)
-
-    if arp_count == 0 :
-        arp_count +=1
-        print (str(arp_count))
-        get_mac(str(monip))
-
-    # Edit Packet and Replace DST MAC with Monitor MAC
-    try:
-        pkt[Ether].dst = mac
-        sendp(pkt)
-    except:
-        pass
-
-
-if __name__ == "__main__": main()
+    mac = get_mac(monip)
+    print(mac)
+    main()
