@@ -26,6 +26,13 @@ Python/Mac
 trafficBeat.py 10.0.0.20
 ```
 
+### How to Build Windows Binary 
+
+```
+#Python 3.6.4 Required
+pyinstaller --onefile --hidden-import=queue trafficBeat.py
+```
+
 ## Built With
 
 * [Pyinstaller](https://www.pyinstaller.org) - Library used to convert python script to windows binary 
