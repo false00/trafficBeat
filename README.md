@@ -8,8 +8,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Requirements for using the .py version of the script. Not Required for the windows binary.
-
 ```
 Windows 
 WinPcap - https://www.winpcap.org/
