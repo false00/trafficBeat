@@ -15,7 +15,7 @@ Python
 pip install scapy
 
 Windows 
-WinPap - https://www.winpcap.org/
+WinPcap - https://www.winpcap.org/
 ```
 
 ### Installing
