@@ -11,13 +11,13 @@ These instructions will get you a copy of the project up and running on your loc
 Requirements for using the .py version of the script. Not Required for the windows binary.
 
 ```
-Python
-pip install scapy
+Windows 
+WinPcap - https://www.winpcap.org/
 ```
 
 ```
-Windows 
-WinPcap - https://www.winpcap.org/
+Python
+pip install scapy
 ```
 
 ### How to Use
