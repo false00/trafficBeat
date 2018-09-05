@@ -13,7 +13,9 @@ Requirements for using the .py version of the script. Not Required for the windo
 ```
 Python
 pip install scapy
+```
 
+```
 Windows 
 WinPcap - https://www.winpcap.org/
 ```
