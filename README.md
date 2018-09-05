@@ -20,7 +20,7 @@ Windows
 WinPcap - https://www.winpcap.org/
 ```
 
-### Installing
+### How to Use
 
 ```
 Windows
@@ -33,6 +33,7 @@ trafficBeat.py 10.0.0.20
 ```
 
 ### How to Build Windows Binary 
+If you're not comfortable running the provided Windows binary, you can build your own version using pyinstaller.
 
 ```
 #Python 3.6.4 Required
