@@ -8,33 +8,33 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-```
-Windows 
+Windows
+``` 
 WinPcap - https://www.winpcap.org/
 ```
 
-```
 Python
+```
 pip install scapy
 ```
 
 ### How to Use
 
-```
 Windows
+```
 trafficBeat.exe 10.0.0.20
 ```
 
+Python
 ```
-Python/Mac
 trafficBeat.py 10.0.0.20
 ```
 
 ### How to Build Windows Binary 
 If you're not comfortable running the provided Windows binary, you can build your own version using pyinstaller.
 
+Python 3.6.4 Required
 ```
-#Python 3.6.4 Required
 pyinstaller --onefile --hidden-import=queue trafficBeat.py
 ```
 
