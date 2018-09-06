@@ -11,6 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 Windows
 ``` 
 WinPcap - https://www.winpcap.org/
+vc_redist.x64.exe - https://www.microsoft.com/en-US/download/details.aspx?id=52685
 ```
 
 Python
