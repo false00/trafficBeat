@@ -43,7 +43,16 @@ net start trafficBeat
 ### How to Build Windows Binary 
 If you're not comfortable running the provided Windows binary, you can build your own version using pyinstaller.
 
-Python 3.6.4 Required
+Requirements
+```
+Software:
+Python 3.6.4 
+
+Operating System:
+Windows 7
+```
+
+Build
 ```
 pyinstaller --onefile --hidden-import=queue trafficBeat.py
 ```
