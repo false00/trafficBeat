@@ -19,7 +19,7 @@ Python
 pip install scapy
 ```
 
-### How to Use
+### How to Run
 
 Windows
 ```
@@ -29,6 +29,15 @@ trafficBeat.exe 10.0.0.20
 Python
 ```
 trafficBeat.py 10.0.0.20
+```
+
+### How to Install as a Service
+
+Windows
+```
+sc create trafficBeat binPath= "C:\trafficBeat-master\trafficBeat-master\trafficBeat.exe 10.0.0.20"
+sc config "trafficBeat"  start= auto
+net start trafficBeat
 ```
 
 ### How to Build Windows Binary 
@@ -50,7 +59,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors
 
-* **Juan Ortega** - *Initial work* - [falseShepherd](https://github.com/ucatech)
+* **Juan Ortega** - *Initial work* - [falseShepherd](https://github.com/false00)
 
 ## License
 
